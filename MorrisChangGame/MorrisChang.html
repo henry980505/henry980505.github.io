@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>走過張忠謀一生</title>
+  <style>
+    body {
+      background-image: url('https://bookevent.cwgv.com.tw/event/2024/Morris_Chang/assets/img/book02.png');
+      background-size: auto|auto;
+      background-repeat: no-repeat;
+      background-position: top;
+
+      font-family: "Noto Sans TC", sans-serif;
+      color: #fff;
+      text-align: center;
+      padding: 50px;
+      background-color: #000;
+      overflow: hidden;
+    }
+    .story {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 15px;
+      margin: 20px auto;
+      width: 80%;
+      max-width: 700px;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+    .choices {
+      margin-top: 20px;
+    }
+    .choice-btn {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .choice-btn:hover {
+      background-color: #388E3C;
+    }
+    .quote-box {
+      background: rgba(255, 255, 255, 0.1);
+      border-left: 5px solid #4CAF50;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 15px;
+      max-width: 600px;
+      font-style: italic;
+      color: #eee;
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+    .quote-box::before {
+      content: "❝";
+      font-size: 40px;
+      color: #4CAF50;
+      position: absolute;
+      top: 10px;
+      left: 15px;
+    }
+    .quote-source {
+      text-align: right;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #ccc;
+    }
+    audio {
+      display: none;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    .text-animation {
+      animation: slideDown 2s ease-out forwards;
+      opacity: 0;
+      position: relative;
+    }
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    .info-card {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: none;
+      z-index: 100;
+    }
+    .info-card h2 {
+      margin-bottom: 15px;
+      color: #4CAF50;
+    }
+    .info-card p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* 圓形按鈕樣式 */
+    .info-btn {
+      position: fixed; /* 固定位置 */
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 30px;
+      font-weight: bold;
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.3s;
+      z-index: 101;
+    }
+    .info-btn:hover {
+      background-color: #388E3C;
+    }
+  </style>
+</head>
+<body>
+
+<audio id="bgm" src="https://your-music-link.com/music.mp3" autoplay loop></audio>
+
+<div class="story" id="story">
+  <h1 class="text-animation">張忠謀的選擇之路</h1>
+  <p class="text-animation">1940年代，中國局勢動盪。你，年輕的張忠謀，站在人生最初的十字路口。</p>
+  <div class="choices" id="choices">
+    <button class="choice-btn" onclick="choose('start')">啟程</button>
+  </div>
+</div>
+
+<div class="info-card" id="infoCard">
+  <h2>關於本遊戲</h2>
+  <p>本遊戲程式、文字部分由ChatGPT生成，王丞皓修改</p>
+  
+  <p>背景圖片來自<a href="https://bookevent.cwgv.com.tw/event/2024/Morris_Chang/">天下文化</a>網站</p>
+
+</div>
+
+<!-- 顯示/隱藏資訊卡按鈕 -->
+<button class="info-btn" onclick="toggleInfoCard()">i</button>
+<script>
+// 顯示/隱藏資訊卡的功能
+function toggleInfoCard() {
+  const infoCard = document.getElementById('infoCard');
+  if (infoCard.style.display === "none" || infoCard.style.display === "") {
+    infoCard.style.display = "block";
+  } else {
+    infoCard.style.display = "none";
+  }
+}
+</script>
+
+<script>
+function choose(option) {
+  const story = document.getElementById('story');
+  if (option === 'start') {
+    story.innerHTML = `
+      <h1 class="text-animation">美國夢的開始</h1>
+      <p class="text-animation">你在中國度過了少年時期，並前往美國進一步深造，這是你人生中的第一個關鍵選擇。</p>
+      <div class="quote-box">
+        「父親認為我只有一條路：去美國讀大學」
+        <div class="quote-source">——《張忠謀自傳・上冊》第68頁</div>
+      </div>
+      <div class="choices">
+        <button class="choice-btn" onclick="choose('mit')">進入哈佛</button>
+      </div>
+    `;
+  }
+  else if (option === 'mit') {
+    story.innerHTML = `
+      <h1 class="text-animation">麻省理工博士落榜，進入職場</h1>
+      <p class="text-animation">在哈佛適應一年後，你轉學到麻省理工，並希望繼續深造，但最終未能成功進入博士班。你決定進入職場，開始你的事業。</p>
+      <div class="quote-box">
+        「許多年後，我把在麻省理工落第視為我一生的最大幸運！」
+        <div class="quote-source">——《張忠謀自傳・上冊》第104頁</div>
+      </div>
+      <div class="choices">
+        <button class="choice-btn" onclick="choose('ford')">求職</button>
+      </div>
+    `;
+  }
+  else if (option === 'ford') {
+    story.innerHTML = `
+      <h1 class="text-animation">是否選擇福特？</h1>
+      <p class="text-animation">福特是一個穩定的選擇，但你很快發現自己對科技領域的可能性充滿熱情。</p>
+      <div class="quote-box">
+        「我對福特的工作有把握，但是難道我不肯冒險去希凡尼亞做我沒把握的事嗎？」
+        <div class="quote-source">——《張忠謀自傳・上冊》第114頁</div>
+      </div>
+      <div class="choices">
+        <button class="choice-btn" onclick="choose('ti')">加入希凡尼亞</button>
+      </div>
+    `;
+  }
+  else if (option === 'ti') {
+    story.innerHTML = `
+      <h1 class="text-animation">進入半導體業</h1>
+      <p class="text-animation">你決定進入半導體業，並且在這裡學到半導體的技術。這是你職業生涯的重要轉折點。隨後，你進入前景看好的德州儀器工作。</p>
+      <div class="quote-box">
+        「這個行業雖然只有幾年歷史，但已處於戰國時代。」
+        <div class="quote-source">——《張忠謀自傳・上冊》第117頁</div>
+      </div>
+      <div class="choices">
+        <button class="choice-btn" onclick="choose('stanford')">攻讀博士</button>
+      </div>
+    `;
+  }
+  else if (option === 'stanford') {
+    story.innerHTML = `
+      <h1 class="text-animation">進入史丹佛讀博士</h1>
+      <p class="text-animation">儘管早期曾經放棄，由於受到總經理鼓勵，你決定再次攻讀博士學位。這次，你選擇了史丹佛大學。</p>
+      <div class="quote-box">
+        「正如後來美國暢銷小說《教父》中所謂，是一個『無法拒絕的機會』」
+        <div class="quote-source">——《張忠謀自傳・上冊》第158頁</div>
+      </div>
+      <div class="choices">
+        <button class="choice-btn" onclick="choose('ti_vp')">重拎書包</button>
+      </div>
+    `;
+  }
+  else if (option === 'ti_vp') {
+    story.innerHTML = `
+      <h1 class="text-animation">當上德州儀器副總裁</h1>
+      <p class="text-animation">讀完博士，重回公司，並在德州儀器多年磨練後，你成功晉升為副總裁，並開始在全球半導體市場上發揮重要影響。打拼多年，看到業界起起落落，最後因為不看好在德州儀器未來職涯發展而離開。</p>
+      <div class="quote-box">
+        「我被賦予的使命就是要重振德儀雄風」
+        <div class="quote-source">——《張忠謀自傳・下冊》第156頁</div>
+      </div>
+      <div class="choices">
+        <button class="choice-btn" onclick="choose('ge')">辭職進入通用電氣</button>
+      </div>
+    `;
+  }
+  else if (option === 'ge') {
+    story.innerHTML = `
+      <h1 class="text-animation">辭職進入通用電氣</h1>
+      <p class="text-animation">你離開德州儀器，進入通用電氣任總經理，這讓你能夠探索更廣泛的商業領域。然而，與董事長的分歧使你不久後就離開。</p>
+      <div class="quote-box">
+        「我沒有搞清楚歇基和通用董事會要的是什麼，我根本不適任他們所要的！」
+        <div class="quote-source">——《張忠謀自傳・下冊》第283頁</div>
+      </div>
+      <div class="choices">
+        <button class="choice-btn" onclick="choose('gia')">當上工研院長</button>
+      </div>
+    `;
+  }
+  else if (option === 'gia') {
+    story.innerHTML = `
+      <h1 class="text-animation">當上工研院長</h1>
+      <p class="text-animation">後來，你來到台灣，成為工業技術研究院長，並進行改革，推動工研院與業界連結。</p>
+      <div class="quote-box">
+        「工業技術是工業要用的技術」
+        <div class="quote-source">——《張忠謀自傳・下冊》第313頁</div>
+      </div>
+      <div class="choices">
+        <button class="choice-btn" onclick="choose('tsmc')">創辦台積電</button>
+      </div>
+    `;
+  }
+  else if (option === 'tsmc') {
+    story.innerHTML = `
+      <h1 class="text-animation">創辦台積電</h1>
+      <p class="text-animation">你結合過去經驗，創辦了台積電，這改變了全球半導體產業的格局，並成為世界領先的晶圓代工公司。在2005年，你釋出CEO職位，專任董事長，但經過「變相裁員」事件，你決定重新兼任CEO。</p>
+      <div class="quote-box">
+        「競爭者只是以代工為副業，而代工是我們的專業。」
+        <div class="quote-source">——《張忠謀自傳・下冊》第336頁</div>
+      </div>
+      <div class="choices">
+        <button class="choice-btn" onclick="choose('tsmc_return')">重新兼任CEO</button>
+        
+      </div>
+    `;
+  }
+  else if (option === 'tsmc_return') {
+    story.innerHTML = `
+      <h1 class="text-animation">回任執行長</h1>
+      <p class="text-animation">你繼續推動公司的創新發展，成為全球半導體領袖。</p>
+      <div class="quote-box">
+        「2009年6月重兼CEO後的幾年，是我成就頗為豐富的年代」
+        <div class="quote-source">——《張忠謀自傳・下冊》第564頁</div>
+      </div>
+      <div class="choices">
+        <button class="choice-btn" onclick="choose('retirement')">2018年退休</button>
+      </div>
+    `;
+  }
+  else if (option === 'retirement') {
+    story.innerHTML = `
+      <h1 class="text-animation">2018年退休</h1>
+      <p class="text-animation">你在2018年正式退休，結束了長達數十年的半導體生涯。你見證了台積電的崛起，並確保它在全球半導體業的領先地位。退休後，你仍持續關懷社會，繼續影響世界。</p>
+      <div class="quote-box">
+        「台積電的責任，已落在我的接班人肩膀上。」
+        <div class="quote-source">——《張忠謀自傳・下冊》第605頁</div>
+      </div>
+      <div class="choices">
+        <button class="choice-btn" onclick="location.reload()">遊戲結束，重新開始</button>
+      </div>
+    `;
+  }
+}
+</script>
+
+</body>
+</html>
