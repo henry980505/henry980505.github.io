@@ -18,7 +18,7 @@
 
 進入網頁後，點擊中間的「啟程」，即可開始體驗張忠謀先生充滿波折的一生。
 
-遊戲網頁：[henry980505.github.io/MorrisChangGame](<henry980505.github.io/MorrisChangGame>)
+遊戲網頁：[https://henry980505.github.io/MorrisChangGame](<https://henry980505.github.io/MorrisChangGame>)
 
 原始碼：[https://github.com/henry980505/henry980505.github.io/edit/main/MorrisChangGame/index.html](<https://github.com/henry980505/henry980505.github.io/edit/main/MorrisChangGame/index.html>)
 
