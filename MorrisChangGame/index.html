@@ -72,9 +72,7 @@
       font-size: 14px;
       color: #ccc;
     }
-    audio {
-      display: none;
-    }
+
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -141,15 +139,38 @@
     .info-btn:hover {
       background-color: #388E3C;
     }
+    .music-btn {
+      position: fixed;
+      top: 20px;
+      right: 80px; /* 比 info-btn 左邊一點 */
+      width: 50px;
+      height: 50px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.3s;
+      z-index: 101;
+    }
+
+    .music-btn:hover {
+      background-color: #388E3C;
+    }
   </style>
+  
 </head>
 <body>
 
-<video loop autoplay name="media">
-    <source src="https://henry980505.github.io/MorrisChangGame/bgm.mp3" type="audio/mp3">
-</video>
+
 
 <div class="story" id="story">
+
   <h1 class="text-animation">張忠謀的選擇之路</h1>
   <p class="text-animation">1940年代，中國局勢動盪。你，年輕的張忠謀，站在人生最初的十字路口。</p>
   <div class="choices" id="choices">
@@ -160,13 +181,17 @@
 <div class="info-card" id="infoCard">
   <h2>關於本遊戲</h2>
   <p>本遊戲程式、文字部分由ChatGPT生成，王丞皓修改</p>
-  <p>背景音樂由Suno AI生成</p>
-  <p>背景圖片來自<a href="https://bookevent.cwgv.com.tw/event/2024/Morris_Chang/">天下文化</a>網站</p>
+  <p>背景音樂由生成Suno AI生成</p>
+  <p>背景圖片來自<a href="https://bookevent.cwgv.com.tw/event/2024/Morris_Chang/">天下文化</a>網站
+</p>
+  <audio id="bgm" src="bgm.mp3" autoplay loop></audio>
 
 </div>
 
 <!-- 顯示/隱藏資訊卡按鈕 -->
 <button class="info-btn" onclick="toggleInfoCard()">i</button>
+<button class="music-btn" onclick="toggleMute()">🔊</button>
+
 <script>
 // 顯示/隱藏資訊卡的功能
 function toggleInfoCard() {
@@ -177,12 +202,21 @@ function toggleInfoCard() {
     infoCard.style.display = "none";
   }
 }
+function toggleMute() {
+  const audio = document.getElementById('bgm');
+  const musicBtn = document.querySelector('.music-btn');
+  
+  audio.muted = !audio.muted;
+  musicBtn.textContent = audio.muted ? '🔇' : '🔊';
+}
 </script>
 
 <script>
 function choose(option) {
   const story = document.getElementById('story');
   if (option === 'start') {
+    const bgm = document.getElementById('bgm');
+     bgm.play(); 
     story.innerHTML = `
       <h1 class="text-animation">美國夢的開始</h1>
       <p class="text-animation">你在中國度過了少年時期，並前往美國進一步深造，這是你人生中的第一個關鍵選擇。</p>
